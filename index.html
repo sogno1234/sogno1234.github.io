@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>我的图片画廊</title>
+
+<style>
+    body {
+        background: #eeeae2;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        padding: 40px 10px;
+    }
+
+    /* 画廊外框 */
+    .gallery {
+        width: 800px;
+        max-width: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* 图片展示区域 */
+    .slides {
+        display: flex;
+        transition: transform 0.5s ease;
+    }
+
+    /* 每一页 */
+    .slide {
+        min-width: 100%;
+        box-sizing: border-box;
+        height: 450px;
+    }
+
+    /* 图片 */
+    .slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-radius: 6px;
+        display: block;
+    }
+
+    /* 翻页按钮 */
+    button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0,0,0,0.5);
+        color: white;
+        border: none;
+        padding: 12px 16px;
+        font-size: 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        z-index: 2;
+    }
+
+    button:hover {
+        background: rgba(0,0,0,0.8);
+    }
+
+    .prev {
+        left: 10px;
+    }
+
+    .next {
+        right: 10px;
+    }
+
+    /* 页码 */
+    .page-number {
+        text-align: center;
+        margin-top: 15px;
+        color: #555;
+        font-size: 14px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="gallery">
+
+    <div class="slides" id="slides">
+
+        <!-- 第一张图片 -->
+        <div class="slide">
+            <img src="https://raw.githubusercontent.com/sogno1234/sogno55-2/main/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260926090707_916.png">
+        </div>
+
+        <!-- 第二张图片 -->
+        <div class="slide">
+            <img src="https://raw.githubusercontent.com/sogno1234/sogno55-2/main/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260924114109_916.png">
+        </div>
+
+        <!-- 第三张图片 -->
+        <div class="slide">
+            <img src="https://raw.githubusercontent.com/sogno1234/sogno55-2/main/0_2-wtf_916.png">
+        </div>
+
+        <!-- 第四张图片 -->
+        <div class="slide">
+            <img src="https://raw.githubusercontent.com/sogno1234/sogno55-2/main/%E5%9B%BE%E7%89%87%203%20(2)_916.png">
+        </div>
+
+    </div>
+
+    <!-- 翻页按钮 -->
+    <button class="prev" onclick="changePage(-1)">❮</button>
+    <button class="next" onclick="changePage(1)">❯</button>
+
+    <!-- 页码 -->
+    <div class="page-number" id="pageNumber">1 / 4</div>
+
+</div>
+
+<script>
+    let currentPage = 0;
+
+    const slides = document.getElementById("slides");
+    const totalPages = document.querySelectorAll(".slide").length;
+
+    // 翻页功能
+    function changePage(direction) {
+        currentPage += direction;
+
+        // 循环翻页
+        if (currentPage < 0) {
+            currentPage = totalPages - 1;
+        }
+
+        if (currentPage >= totalPages) {
+            currentPage = 0;
+        }
+
+        slides.style.transform =
+            `translateX(-${currentPage * 100}%)`;
+
+        document.getElementById("pageNumber").innerText =
+            (currentPage + 1) + " / " + totalPages;
+    }
+</script>
+
+</body>
+</html>
