@@ -1,8 +1,0 @@
-@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap");
-@import "tailwindcss";
-
-@theme {
-  --font-sans: "Cinzel", Georgia, serif;
-  --font-serif: "Cinzel", Georgia, serif;
-  --breakpoint-md: 50rem;
-}
